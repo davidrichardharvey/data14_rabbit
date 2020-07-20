@@ -25,13 +25,13 @@ class Rabbit:
         self.total = total
         return [total, month, male_age[3], female_age[3]]
 
-    def advance_time(self, months=None):
+    def advance_time(self, months_since_start=None):
         sleep(1)
-        if not months:
-            months = self.months
-        months += 1
-        self.months = months
-        return months
+        if months_since_start is None:
+            months_since_start = self.months
+        months_since_start += 1
+        self.months = months_since_start
+        return months_since_start
 
     def number_of_babies(self, pregnant_rabbits):
         sum = 0
