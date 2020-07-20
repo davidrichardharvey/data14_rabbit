@@ -1,3 +1,6 @@
+from time import sleep
+
+
 class Rabbit:
     def __init__(self):
         self.number_males = 1
@@ -16,5 +19,14 @@ class Rabbit:
         self.total = total
         return [total, month]
 
+    def advance_time(self, months=None):
+        sleep(1)
+        if not months:
+            months = self.months
+        months += 1
+        self.months = months
+        return months
+
 xyz = Rabbit()
 print(xyz._set_initial())
+print(xyz.advance_time(3))
