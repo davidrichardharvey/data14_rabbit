@@ -1,4 +1,4 @@
-from rabbit_project.sprint1 import Rabbit
+from rabbit_project.rabbit import Rabbit
 from random import randint
 
 class RabbitBirths(Rabbit):
