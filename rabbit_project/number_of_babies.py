@@ -37,12 +37,12 @@ class RabbitBirths(Rabbit):
     def number_of_babies(self, new_pregnancies=None):
         if new_pregnancies is None:
             new_pregnancies = self.pregnancies
-            num_of_births = 0
-            for i in range(new_pregnancies):
-                num_babies = randint(1, 14)
-                num_of_births += num_babies
-            self.birth = num_of_births
-            return num_of_births
+        num_of_births = 0
+        for i in range(new_pregnancies):
+            num_babies = randint(1, 14)
+            num_of_births += num_babies
+        self.birth = num_of_births
+        return num_of_births
 
 
 testing = RabbitBirths()
