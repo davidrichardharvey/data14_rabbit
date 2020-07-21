@@ -1,7 +1,9 @@
 from random import randint
 
+
 class GenderAssign:
     def gender_at_birth(self, number_babies=None, male_count=None, female_count=None):
+        # Assigns the genders of each baby individually and groups them together
         if number_babies is None:
             number_babies = self.births
         if male_count is None:
