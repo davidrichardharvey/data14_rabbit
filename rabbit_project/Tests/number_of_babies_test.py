@@ -1,6 +1,6 @@
 # As a modeler I want 1 month to be equal to one second
 # so that i can track the number of rabbits with time
-from sprint1 import Rabbit
+from rabbit_project.sprint1 import Rabbit
 
 test = Rabbit()
 

@@ -1,5 +1,5 @@
 import unittest
-from sprint1 import Rabbit
+from rabbit_project.sprint1 import Rabbit
 
 
 class TestRabbits(unittest.TestCase):

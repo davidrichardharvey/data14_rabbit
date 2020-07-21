@@ -1,4 +1,4 @@
-from data14_rabbit.number_of_babies import RabbitBirths
+from rabbit_project.number_of_babies import RabbitBirths
 
 test = RabbitBirths()
 
