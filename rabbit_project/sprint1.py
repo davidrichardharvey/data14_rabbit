@@ -33,9 +33,4 @@ class Rabbit:
         self.months = months_since_start
         return months_since_start
 
-    def number_of_babies(self, pregnant_rabbits):
-        sum = 0
-        for i in range(pregnant_rabbits):
-            num_babies = randint(1, 14)
-            sum += num_babies
-        return sum
+
