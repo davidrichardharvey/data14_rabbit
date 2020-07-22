@@ -3,7 +3,7 @@ from rabbit_project.classes.rabbit import Rabbit
 
 def test_birth_children():
     test = Rabbit()
-    assert test.pregnancies == [0, 0]  # Assert assumes that variable is already set as that number
+    assert test.pregnancies == [0, 1]  # Assert assumes that variable is already set as that number
     test.birth_children()
     assert test.new_babies == 0
     test.pregnancies = [0, 5]
