@@ -58,12 +58,3 @@ class Rabbit:
             t.sleep(1)
             self.month += 1
 
-    def rabbit_eat(self):
-        print("Im a rabbit and I eat carrots")
-
-danny = Rabbit()
-
-
-danny.calculate_total_pop()
-print(danny.total_population)
-print(danny.time_passing())
