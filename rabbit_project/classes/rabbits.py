@@ -21,6 +21,12 @@ class Rabbits:
         new_list.append({"Males": 0, "Females": 0})
         return new_list
 
+    def rabbits_dead(self, new_list):
+        print(new_list.pop(0)) = rabbits_dead_count
+        return new_list.pop(0)
+        
+
 testing = Rabbits()
 testing.calc_pop()
 print(testing.total_population)
+testing.rabbits_dead()
