@@ -9,6 +9,8 @@ class Rabbit:
         self.list = self.init_list()
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
+        self.deaths_total = 0
+
 
     def calculate_total_pop(self):
         # This method calculated the total population per month and adds to the total population
@@ -55,6 +57,11 @@ class Rabbit:
             self.males += generation['Males']
             self.females += generation['Females']
 
+    def rabbits_dead(self):
+        generation_deaths = self.list.pop(0)
+        deaths = generation_deaths['Males'] + generation_deaths['Females']
+        self.deaths_total += deaths
+
     def pregnant_babies(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
         fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males'] - self.pregnancies[1]
@@ -62,6 +69,7 @@ class Rabbit:
         pregnancies = min(fertile_females, fertile_males)
         self.pregnancies.append(pregnancies)
         return pregnancies
+
 
 
 
