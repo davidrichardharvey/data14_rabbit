@@ -1,6 +1,6 @@
-from rabbit_project.classes.rabbits import Rabbits
+from rabbit_project.classes.rabbit import Rabbit
 
-test = Rabbits()
+test = Rabbit()
 
 def test_rabbits_dead():
     assert test.list == test.init_list()
