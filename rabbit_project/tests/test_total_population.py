@@ -1,4 +1,4 @@
-from rabbit_project.classes.rabbits import Rabbits
+from rabbit_project.classes.total_population import Rabbits
 
 def test_calculate_total_pop():
     r = Rabbits()
