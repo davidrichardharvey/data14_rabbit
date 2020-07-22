@@ -15,7 +15,7 @@ class Rabbit:
         total_pop = 0
         for i in range(0, len(self.list)):
             total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
-        self.total_population += total_pop
+        self.total_population = total_pop
         return total_pop
 
     def init_list(self):
