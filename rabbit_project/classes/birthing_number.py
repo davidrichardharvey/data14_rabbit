@@ -11,3 +11,5 @@ class Rabbits:
         for each in range(0, self.pregnancies.pop(0)):
             new_children = randint(1, 14)
             self.new_babies += new_children
+
+

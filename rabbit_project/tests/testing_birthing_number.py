@@ -12,3 +12,4 @@ def test_birth_children():
     test.pregnancies[0] = 10
     test.birth_children()
     assert 10 <= test.new_babies <= 140
+
