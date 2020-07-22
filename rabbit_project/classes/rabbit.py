@@ -45,6 +45,9 @@ class Rabbit:
             new_children = randint(1, 14)
             self.new_babies += new_children
 
+    def trivial_method(self):
+       print(1)
+
     def calc_gender_totals(self):
         self.males = 0
         self.females = 0
@@ -60,8 +63,5 @@ class Rabbit:
 
     def method(self):
         print("help")
-
-
-
 
 
