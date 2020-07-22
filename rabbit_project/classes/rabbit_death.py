@@ -4,7 +4,7 @@ class Rabbits:
         self.males = 0
         self.females = 0
         self.list = self.init_list()
-        self.deaths = 0
+        self.deaths_total = 0
 
     def calc_pop(self):
         total_pop = 0
@@ -23,17 +23,16 @@ class Rabbits:
         return new_list
 
     def rabbits_dead(self):
-        new_list = self.init_list()
-        generation_deaths = new_list.pop(0)
-        death_total = generation_deaths['Males'] + generation_deaths['Females']
-        self.deaths += death_total
+        generation_deaths = self.list.pop(0)
+        deaths = generation_deaths['Males'] + generation_deaths['Females']
+        self.deaths_total += deaths
         
 
 testing = Rabbits()
 testing.calc_pop()
 print(testing.total_population)
 testing.rabbits_dead()
-print(testing.deaths)
-testing.deaths = 3
+print(testing.deaths_total)
+testing.deaths_total = 3
 testing.rabbits_dead()
-print(testing.deaths)
+print(testing.deaths_total)
