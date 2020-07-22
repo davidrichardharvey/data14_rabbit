@@ -5,7 +5,7 @@ class Rabbits:
         self.females = 0
         self.list = self.init_list()
 
-    def calc_pop(self):
+    def calculate_total_pop(self):
         total_pop = 0
         for i in range(0, len(self.list)):
             total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
@@ -22,5 +22,5 @@ class Rabbits:
         return new_list
 
 testing = Rabbits()
-testing.calc_pop()
+testing.calculate_total_pop()
 print(testing.total_population)
