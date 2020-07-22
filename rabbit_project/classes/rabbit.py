@@ -61,10 +61,7 @@ class Rabbit:
             t.sleep(1)
             self.month += 1
 
+    def method(self):
+        print("help")
 
-danny = Rabbit()
 
-
-danny.calculate_total_pop()
-# print(danny.total_population)
-# print(danny.time_passing())
