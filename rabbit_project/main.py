@@ -1,9 +1,3 @@
-import time as t
+from rabbit_project.time_functions import time_passing
 
-
-def time_passing():
-    month = 1
-    while True:
-        print(f"We are in month {month}")
-        t.sleep(1)
-        month += 1
+time_passing()
