@@ -29,7 +29,7 @@ class Rabbit:
         return new_list
 
     def assign_genders(self):
-        males = 0
+        males = 0  # Is there a reason we are using males/females rather than self.?
         females = 0
         for baby in range(0, self.new_babies):
             gender = ['M', 'F'][randint(0, 1)]
@@ -51,6 +51,7 @@ class Rabbit:
         for generation in self.list:
             self.males += generation['Males']
             self.females += generation['Females']
+        return self.males, self.females
 
     def time_passing(self):
         while True:
