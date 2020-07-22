@@ -1,6 +1,9 @@
-from rabbit_project.classes.rabbits import Rabbits
+from rabbit_project.classes.rabbit import Rabbit
 
 
 def test_initial_breeding_pair():
-    assert Rabbits().num_male == 1
-    assert Rabbits().num_female == 1
+    rab = Rabbit()
+    assert rab.males == 1
+    assert rab.females == 1
+
+test_initial_breeding_pair()

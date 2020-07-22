@@ -1,8 +1,8 @@
-from rabbit_project.classes.birthing_number import Rabbits
+from rabbit_project.classes.rabbit import Rabbit
 
-test = Rabbits()
 
 def test_birth_children():
+    test = Rabbit()
     assert test.pregnancies == [0, 0]  # Assert assumes that variable is already set as that number
     test.birth_children()
     assert test.new_babies == 0
@@ -16,5 +16,5 @@ def test_birth_children():
     test.birth_children()
     assert 10 <= test.new_babies <= 140
 
-
+test_birth_children()
 
