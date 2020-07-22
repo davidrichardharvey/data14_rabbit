@@ -45,6 +45,9 @@ class Rabbit:
             new_children = randint(1, 14)
             self.new_babies += new_children
 
+    def trivial_method(self):
+       print(1)
+
     def calc_gender_totals(self):
         self.males = 0
         self.females = 0
@@ -63,5 +66,5 @@ danny = Rabbit()
 
 
 danny.calculate_total_pop()
-print(danny.total_population)
-print(danny.time_passing())
+# print(danny.total_population)
+# print(danny.time_passing())
