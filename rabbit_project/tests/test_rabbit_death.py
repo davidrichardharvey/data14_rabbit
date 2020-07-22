@@ -1,4 +1,4 @@
-from rabbit_project.classes.rabbit_death import Rabbits
+from rabbit_project.classes.rabbits import Rabbits
 
 test = Rabbits()
 
