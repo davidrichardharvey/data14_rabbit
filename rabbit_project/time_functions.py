@@ -3,8 +3,9 @@ from rabbit_project.classes.rabbit import Rabbit
 
 
 def time_passing():
+    month_limit = int(input("How long would you like the model to run for, in months?"))
     month = 1
-    while True:
+    while month < month_limit:
         print(f"We are in month {month}")
         rabbit_one_month()
         print(f"Population: {testing.total_population}")
@@ -23,20 +24,5 @@ def rabbit_one_month():
     testing.calculate_total_pop()
 
 
-
-# def rabbit_one_month():
-#     print(f"We are in month {month}")
-#     testing.pregnant_babies()
-#     testing.birth_children()
-#     testing.assign_genders()
-#     testing.calc_gender_totals()
-#     testing.calculate_total_pop()
-#     print(f"Population: {testing.total_population}")
-#     print(f"Males: {testing.males}")
-#     print(f"Females: {testing.females}")
-
-
 testing = Rabbit()
 
-
-time_passing()
