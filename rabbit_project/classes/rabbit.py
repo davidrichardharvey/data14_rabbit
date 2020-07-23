@@ -15,9 +15,8 @@ class Rabbit:
         self.vulnerable_females = 0
         self.vulnerable_males = 0
 
-
     def calculate_total_pop(self):
-        # This method calculated the total population per month and adds to the total population
+        # This method goes through the list of rabbits and counts up all males and females
         total_pop = 0
         for i in range(0, len(self.list)):
             total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
@@ -25,7 +24,7 @@ class Rabbit:
         return total_pop
 
     def init_list(self):
-        # This sets the initial list of all ages of rabbits, assuming they die at 5 years old
+        # This sets the initial list of 60 items with all ages of rabbits, assuming they die at 5 years old
         new_list = []
         new_list.append({"Males": 0, "Females": 0})
         new_list.append({"Males": 0, "Females": 0})
@@ -68,7 +67,7 @@ class Rabbit:
     #     deaths = generation_deaths['Males'] + generation_deaths['Females']
     #     self.deaths_total += deaths
 
-    def pregnant_babies(self):
+    def pregnant_rabbits(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
         fertile_males = self.males - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males']
         fertile_females = self.females - self.list[0]['Females'] - self.list[1]['Females'] - self.list[2]['Females'] - self.pregnancies[1]
