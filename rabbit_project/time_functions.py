@@ -15,6 +15,12 @@ def time_passing(final_month):
     while month <= final_month:
         print(f"We are in month {month}")
         rabbit_one_month()
+
+        print(f"Population: {rabbit_population_model.total_population:,d}")
+        print(f"Deaths: {rabbit_population_model.deaths_total:,d}")
+        print(f"Males: {rabbit_population_model.males:,d}")
+        print(f"Females: {rabbit_population_model.females:,d}\n")
+
         append_data_csv(month, rabbit_population_model.total_population,
                         rabbit_population_model.males, rabbit_population_model.females,
                         rabbit_population_model.deaths_total, model_count)
@@ -23,6 +29,7 @@ def time_passing(final_month):
         print(f"Deaths: {rabbit_population_model.deaths_total}")
         print(f"Males: {rabbit_population_model.males}")
         print(f"Females: {rabbit_population_model.females}\n")
+
         t.sleep(1)
         month += 1
 
@@ -33,6 +40,7 @@ def rabbit_one_month():
     rabbit_population_model.calc_gender_totals()
     rabbit_population_model.rabbits_dead()
     rabbit_population_model.calculate_total_pop()
+
 
 def append_data_csv(month, total_population, males, females, deaths, model_count):
     # Appends new month data to a csv file
@@ -46,8 +54,5 @@ def create_rabbit_csv(model_count):
     with open(f"rabbit_modelling_data{model_count}", "w") as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(headers_list)
-
-
-
 
 
