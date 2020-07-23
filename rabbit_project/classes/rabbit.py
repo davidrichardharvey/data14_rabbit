@@ -1,4 +1,5 @@
 from random import randint
+import numpy as np
 
 
 class Rabbit:
@@ -10,6 +11,7 @@ class Rabbit:
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
         self.deaths_total = 0
+        self.new_generation = []
 
 
     def calculate_total_pop(self):
@@ -23,11 +25,12 @@ class Rabbit:
     def init_list(self):
         # This sets the initial list of all ages of rabbits, assuming they die at 5 years old
         new_list = []
+        new_list.append({"Males": 0, "Females": 0})
+        new_list.append({"Males": 0, "Females": 0})
+        new_list.append({"Males": 0, "Females": 0})
+        new_list.append({"Males": 1, "Females": 1})
         for each in range(0, 57):
             new_list.append({"Males": 0, "Females": 0})
-        new_list.append({"Males": 1, "Females": 1})
-        new_list.append({"Males": 0, "Females": 0})
-        new_list.append({"Males": 0, "Females": 0})
         return new_list
 
     def assign_genders(self):
@@ -40,7 +43,8 @@ class Rabbit:
                 males += 1
             elif gender == 'F':
                 females += 1
-        self.list.append({'Males': males, 'Females': females})
+        self.new_generation = {'Males': males, 'Females': females}
+        self.list = [self.new_generation] + self.list
 
     def birth_children(self):
         # This calculates the number of rabbits born based on the number of birthing females
@@ -57,18 +61,35 @@ class Rabbit:
             self.males += generation['Males']
             self.females += generation['Females']
 
-    def rabbits_dead(self):
-        generation_deaths = self.list.pop(0)
-        deaths = generation_deaths['Males'] + generation_deaths['Females']
-        self.deaths_total += deaths
+    # def rabbits_dead(self):
+    #     generation_deaths = self.list.pop(0)
+    #     deaths = generation_deaths['Males'] + generation_deaths['Females']
+    #     self.deaths_total += deaths
 
     def pregnant_babies(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
-        fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males'] - self.pregnancies[1]
-        fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1]
+        fertile_males = self.males - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males']
+        fertile_females = self.females - self.list[0]['Females'] - self.list[1]['Females'] - self.list[2]['Females'] - self.pregnancies[1]
         pregnancies = min(fertile_females, fertile_males)
         self.pregnancies.append(pregnancies)
         return pregnancies
+
+    def rabbits_dead_new(self):
+        vulnerable = 0
+        for generation in self.list[48:]:
+            vulnerable += generation['Males'] + generation['Females']
+        if vulnerable > 5000:
+            n,p = vulnerable,0.1
+            deaths = np.random.binomial(n,p,1)[0]
+            self.deaths_total += deaths
+        else:
+            for generation in range(48,len(self.list)):
+                for key in self.list[generation]:
+                    for rabbit in self.list[generation][key]:
+                        death_roll = randint(1,11)
+                        if death_roll == 1:
+                            self.list[generation][key]
+
 
 
 
