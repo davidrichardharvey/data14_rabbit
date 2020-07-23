@@ -1,5 +1,5 @@
 from random import randint
-from numpy import random
+import numpy as np
 
 
 class Rabbit:
@@ -11,7 +11,7 @@ class Rabbit:
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
         self.deaths_total = 0
-        self.new_genereration = []
+        self.new_generation = []
         self.vulnerable_females = 0
         self.vulnerable_males = 0
 
@@ -30,8 +30,6 @@ class Rabbit:
         new_list.append({"Males": 0, "Females": 0})
         new_list.append({"Males": 0, "Females": 0})
         new_list.append({"Males": 1, "Females": 1})
-        for each in range(0, 57):
-            new_list.append({"Males": 0, "Females": 0})
         return new_list
 
     def assign_genders(self):
@@ -70,40 +68,70 @@ class Rabbit:
     def pregnant_rabbits(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
         fertile_males = self.males - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males']
-        fertile_females = self.females - self.list[0]['Females'] - self.list[1]['Females'] - self.list[2]['Females'] - self.pregnancies[1]
+        fertile_females = self.females - self.list[0]['Females'] - self.list[1]['Females'] - self.list[2]['Females'] - \
+                          self.pregnancies[1]
         pregnancies = min(fertile_females, fertile_males)
         self.pregnancies.append(pregnancies)
         return pregnancies
 
-    def rabbits_dead_new(self):
-        deaths = 0
-        self.vulnerable_males += self.list.pop(49['Males'])
-        self.vulnerable_females += self.list.pop(49['Females'])
-        if self.vulnerable_males < 500:
-            for each in self.vulnerable_males:
-                death_roll = randint(1,11)
-                if death_roll == 1:
-                    deaths += 1
-                    self.vulnerable_males -= 1
-        else:
-            n,p = self.vulnerable_males,0.1
-            deaths = np.random.binomial(n,p,1)[0]
-            self.vulnerable_males -= deaths
-        self.deaths_total += deaths
-        deaths = 0
-        if self.vulnerable_females < 500:
-            for each in self.vulnerable_females:
-                death_roll = randint(1,11)
-                if death_roll == 1:
-                    deaths += 1
-                    self.vulnerable_females -= 1
-        else:
-            n,p = self.vulnerable_females,0.1
-            deaths = np.random.binomial(n,p,1)[0]
-            self.vulnerable_females -= deaths
-        self.deaths_total += deaths
+    # def rabbits_dead_new(self):
+    #     deaths = 0
+    #     self.vulnerable_males += self.list.pop(49['Males'])
+    #     self.vulnerable_females += self.list.pop(49['Females'])
+    #     if self.vulnerable_males < 500:
+    #         for each in range(0, self.vulnerable_males):
+    #             death_roll = randint(1, 11)
+    #             if death_roll == 1:
+    #                 deaths += 1
+    #                 self.vulnerable_males -= 1
+    #     else:
+    #         n, p = self.vulnerable_males, 0.1
+    #         deaths = np.random.binomial(n, p, 1)[0]
+    #         self.vulnerable_males -= deaths
+    #     self.deaths_total += deaths
+    #     deaths = 0
+    #     if self.vulnerable_females < 500:
+    #         for each in range(0, self.vulnerable_females):
+    #             death_roll = randint(1, 11)
+    #             if death_roll == 1:
+    #                 deaths += 1
+    #                 self.vulnerable_females -= 1
+    #     else:
+    #         n, p = self.vulnerable_females, 0.1
+    #         deaths = np.random.binomial(n, p, 1)[0]
+    #         self.vulnerable_females -= deaths
+    #     self.deaths_total += deaths
 
 
+    def rabbit_deaths_new(self):
+        if len(self.list) > 48:
+            for key in self.list:
+                self.vulnerable_females = key.keys()['Females'][48:]
+                self.vulnerable_males = key.keys()['Males'][48:]
+            deaths = 0
+            if self.vulnerable_males < 500:
+                for each in range(0, self.vulnerable_males):
+                     death_roll = randint(1, 11)
+                    if death_roll == 1:
+                       deaths += 1
+                       self.vulnerable_males -= 1
+            else:
+                n, p = self.vulnerable_males, 0.1
+                deaths = np.random.binomial(n, p, 1)[0]
+                self.vulnerable_males -= deaths
+                self.deaths_total += deaths
+            deaths = 0
+            if self.vulnerable_males < 500:
+                for each in range(0, self.vulnerable_males):
+                    death_roll = randint(1, 11)
+                    if death_roll == 1:
+                        deaths += 1
+                        self.vulnerable_males -= 1
+            else:
+                n, p = self.vulnerable_males, 0.1
+                    deaths = np.random.binomial(n, p, 1)[0]
+                    self.vulnerable_males -= deaths
+                    self.deaths_total += deaths
 
-
+            
 
