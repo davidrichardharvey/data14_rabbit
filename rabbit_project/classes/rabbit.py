@@ -10,12 +10,6 @@ class Rabbit:
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
         self.deaths_total = 0
-        self.rabbit_dying_age = config.r_dying_age()
-        self.rabbit_death_chance = config.r_death_chance()
-        #self.age_of_starting_rabbits = config.r_starting_age()
-        self.rabbit_chance_of_pregnancy = config.r_pregnancy_chance()
-        self.rabbit_num_babies_min = int(config.r_babies_min())
-        self.rabbit_num_babies_max = int(config.r_babies_max())
 
     def calculate_total_pop(self):
         # This method goes through the list of rabbits and counts up all males and females
@@ -49,7 +43,7 @@ class Rabbit:
         # This calculates the number of rabbits born based on the number of birthing females
         self.new_babies = 0
         for each in range(0, self.pregnancies.pop(0)):
-            new_children = randint(self.rabbit_num_babies_min, self.rabbit_num_babies_max)
+            new_children = randint(config.r_babies_min, config.r_babies_max)
             self.new_babies += new_children
 
     def calc_gender_totals(self):
