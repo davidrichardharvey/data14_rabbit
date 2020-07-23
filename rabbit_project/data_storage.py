@@ -1,5 +1,5 @@
 import csv
-
+# from time_functions import the time function
 
 def create_rabbit_csv():
     headers_list = ["Months", " Total Population",
@@ -15,6 +15,7 @@ def append_data_csv():
         # Refactor monthly outputs into list of lists --> talk to Alex & other devs
         csv_append.writerows(list_for_csv)
 
-list_for_csv = []
-list_for_csv.append [month, total_population, males, females, deaths]
+# Code to be added to the time function:
+# list_for_csv = []
+# list_for_csv.append [month, total_population, males, females, deaths]
 
