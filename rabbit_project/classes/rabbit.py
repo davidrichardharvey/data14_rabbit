@@ -11,8 +11,9 @@ class Rabbit:
         self.new_babies = 0
         self.deaths_total = 0
 
+
     def calculate_total_pop(self):
-        # This method goes through the list of rabbits and counts up all males and females
+        # This method calculated the total population per month and adds to the total population
         total_pop = 0
         for i in range(0, len(self.list)):
             total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
@@ -20,7 +21,7 @@ class Rabbit:
         return total_pop
 
     def init_list(self):
-        # This sets the initial list of 60 items with all ages of rabbits, assuming they die at 5 years old
+        # This sets the initial list of all ages of rabbits, assuming they die at 5 years old
         new_list = []
         for each in range(0, 57):
             new_list.append({"Males": 0, "Females": 0})
@@ -61,12 +62,11 @@ class Rabbit:
         deaths = generation_deaths['Males'] + generation_deaths['Females']
         self.deaths_total += deaths
 
-    def pregnant_rabbits(self):
+    def pregnant_babies(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
-        # Rabbits - 2 month old rabbits - 1 month old rabbits - pregnant rabbits - rabbits who have just given birth
-        available_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males']
-        available_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1] - self.pregnancies[0]
-        pregnancies = min(available_females, available_males)
+        fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males'] - self.pregnancies[1]
+        fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1]
+        pregnancies = min(fertile_females, fertile_males)
         self.pregnancies.append(pregnancies)
         return pregnancies
 
