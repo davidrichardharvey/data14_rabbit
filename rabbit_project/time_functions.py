@@ -4,9 +4,9 @@ from rabbit_project.classes.rabbit import Rabbit
 rabbit_population_model = Rabbit()
 
 
-def time_passing():
+def time_passing(final_month):
     month = 1
-    while True:
+    while month <= final_month:
         print(f"We are in month {month}")
         rabbit_one_month()
         print(rabbit_population_model.pregnancies)
@@ -25,5 +25,4 @@ def rabbit_one_month():
     rabbit_population_model.calc_gender_totals()
     rabbit_population_model.rabbits_dead()
     rabbit_population_model.calculate_total_pop()
-
 
