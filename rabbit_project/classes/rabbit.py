@@ -66,10 +66,7 @@ class Rabbit:
         # Rabbits - 2 Month old Rabbits - 1 Month old Rabbits - (Pregnant Females) - (Females who have given birth)
         fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males']
         fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1] - self.pregnancies[0]
-        pregnancies = min(fertile_females, int(fertile_males / 10))
+        pregnancies = min(fertile_females, fertile_males * 10)
         self.pregnancies.append(pregnancies)
-        return pregnancies
-
-
-
+        return self.pregnancies
 
