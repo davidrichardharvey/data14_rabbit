@@ -1,12 +1,14 @@
 from random import randint
-
+import rabbit_project.config_file as config
 
 class Rabbit:
     def __init__(self):
         self.total_population = 0
-        self.males = 1
-        self.females = 1
+        self.males = int(config.r_starting_males())
+        self.females = int(config.r_starting_females())
         self.list = self.init_list()
+        self.min = int(config.r_babies_min())
+        self.max = int(config.r_babies_max())
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
         self.deaths_total = 0
@@ -22,11 +24,9 @@ class Rabbit:
     def init_list(self):
         # This sets the initial list of 60 items with all ages of rabbits, assuming they die at 5 years old
         new_list = []
-        for each in range(0, 57):
+        for each in range(0, 60):
             new_list.append({"Males": 0, "Females": 0})
-        new_list.append({"Males": 1, "Females": 1})
-        new_list.append({"Males": 0, "Females": 0})
-        new_list.append({"Males": 0, "Females": 0})
+        new_list[int(config.r_starting_age())] = {"Males": self.males, "Females": self.females}
         return new_list
 
     def assign_genders(self):
@@ -45,7 +45,7 @@ class Rabbit:
         # This calculates the number of rabbits born based on the number of birthing females
         self.new_babies = 0
         for each in range(0, self.pregnancies.pop(0)):
-            new_children = randint(1, 14)
+            new_children = randint(self.min, self.max)
             self.new_babies += new_children
 
     def calc_gender_totals(self):
