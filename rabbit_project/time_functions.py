@@ -8,7 +8,7 @@ rabbit_population_model = Rabbit()
 
 def time_passing(final_month):
     model_count = 1
-    while os.path.isfile(f"rabbit_modelling_data{model_count}"):
+    while os.path.isfile(f"rabbit_modelling_data{model_count}.csv"):
         model_count += 1
     create_rabbit_csv(model_count)
     month = 1
@@ -24,11 +24,6 @@ def time_passing(final_month):
         append_data_csv(month, rabbit_population_model.total_population,
                         rabbit_population_model.males, rabbit_population_model.females,
                         rabbit_population_model.deaths_total, model_count)
-        print(rabbit_population_model.pregnancies)
-        print(f"Population: {rabbit_population_model.total_population}")
-        print(f"Deaths: {rabbit_population_model.deaths_total}")
-        print(f"Males: {rabbit_population_model.males}")
-        print(f"Females: {rabbit_population_model.females}\n")
 
         t.sleep(1)
         month += 1
