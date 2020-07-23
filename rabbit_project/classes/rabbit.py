@@ -11,7 +11,9 @@ class Rabbit:
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
         self.deaths_total = 0
-        self.new_generation = []
+        self.new_genereration = []
+        self.vulnerable_females = 0
+        self.vulnerable_males = 0
 
 
     def calculate_total_pop(self):
@@ -19,7 +21,7 @@ class Rabbit:
         total_pop = 0
         for i in range(0, len(self.list)):
             total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
-        self.total_population = total_pop
+        self.total_population = total_pop + self.vulnerable_males + self.vulnerable_females
         return total_pop
 
     def init_list(self):
@@ -75,21 +77,31 @@ class Rabbit:
         return pregnancies
 
     def rabbits_dead_new(self):
-        vulnerable = 0
-        for generation in self.list[48:]:
-            vulnerable += generation['Males'] + generation['Females']
-        if vulnerable > 5000:
-            n,p = vulnerable,0.1
-            deaths = np.random.binomial(n,p,1)[0]
+        deaths = 0
+        self.vulnerable_males += self.list.pop(49['Males'])
+        self.vulnerable_females += self.list.pop(49['Females'])
+        if self.vulnerable_males < 500:
+            for each in self.vulnerable_males:
+                death_roll = randint(1,11)
+                if death_roll == 1:
+                    deaths += 1
+                    self.vulnerable_males -= 1
         else:
-            deaths = 0
-            for generation in range(48,len(self.list)):
-                for key in self.list[generation]:
-                    for rabbit in self.list[generation][key]:
-                        death_roll = randint(1,11)
-                        if death_roll == 1:
-                            self.list[generation][key] -= 1
-                            deaths += 1
+            n,p = self.vulnerable_males,0.1
+            deaths = np.random.binomial(n,p,1)[0]
+            self.vulnerable_males -= deaths
+        self.deaths_total += deaths
+        deaths = 0
+        if self.vulnerable_females < 500:
+            for each in self.vulnerable_females:
+                death_roll = randint(1,11)
+                if death_roll == 1:
+                    deaths += 1
+                    self.vulnerable_females -= 1
+        else:
+            n,p = self.vulnerable_females,0.1
+            deaths = np.random.binomial(n,p,1)[0]
+            self.vulnerable_females -= deaths
         self.deaths_total += deaths
 
 
