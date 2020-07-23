@@ -61,12 +61,12 @@ class Rabbit:
         deaths = generation_deaths['Males'] + generation_deaths['Females']
         self.deaths_total += deaths
 
-    def pregnant_babies(self):
+    def pregnant_rabbits(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
-        # Rabbit - 2 month old rabbits - 1 month old rabbits - pregnant rabbits
-        fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males']
-        fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1]
-        pregnancies = min(fertile_females, fertile_males)
+        # Rabbits - 2 month old rabbits - 1 month old rabbits - pregnant rabbits - rabbits who have just given birth
+        available_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males']
+        available_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1] - self.pregnancies[0]
+        pregnancies = min(available_females, available_males)
         self.pregnancies.append(pregnancies)
         return pregnancies
 
