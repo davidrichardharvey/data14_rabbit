@@ -35,8 +35,4 @@ def rabbit_one_month():
 #     print(f"Males: {testing.males}")
 #     print(f"Females: {testing.females}")
 
-
 testing = Rabbit()
-
-
-time_passing()
