@@ -22,7 +22,6 @@ def time_passing(final_month):
         print(f"Deaths: {rabbit_population_model.deaths_total:,d}")
         print(f"Males: {rabbit_population_model.males:,d}")
         print(f"Females: {rabbit_population_model.females:,d}\n")
-        # print(rabbit_population_model.pregnancies) -- dont know if we want this
         append_data_csv(year, rem_month, rabbit_population_model.total_population,
                         rabbit_population_model.males, rabbit_population_model.females,
                         rabbit_population_model.deaths_total, model_count)
