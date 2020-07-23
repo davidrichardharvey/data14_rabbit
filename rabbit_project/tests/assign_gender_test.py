@@ -23,4 +23,4 @@ def test_assign_gender():
     assert roger.list[0]['Females'] is not None
 
 
-test_assign_gender()
+
