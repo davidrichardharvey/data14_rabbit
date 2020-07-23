@@ -2,9 +2,9 @@ import time as t
 from rabbit_project.classes.rabbit import Rabbit
 
 
-def time_passing():
+def time_passing(final_month):
     month = 1
-    while True:
+    while month <= final_month:
         print(f"We are in month {month}")
         rabbit_one_month()
         print(f"Population: {testing.total_population}")
@@ -35,8 +35,4 @@ def rabbit_one_month():
 #     print(f"Males: {testing.males}")
 #     print(f"Females: {testing.females}")
 
-
 testing = Rabbit()
-
-
-time_passing()
