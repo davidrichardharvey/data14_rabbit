@@ -81,14 +81,16 @@ class Rabbit:
         if vulnerable > 5000:
             n,p = vulnerable,0.1
             deaths = np.random.binomial(n,p,1)[0]
-            self.deaths_total += deaths
         else:
+            deaths = 0
             for generation in range(48,len(self.list)):
                 for key in self.list[generation]:
                     for rabbit in self.list[generation][key]:
                         death_roll = randint(1,11)
                         if death_roll == 1:
                             self.list[generation][key] -= 1
+                            deaths += 1
+        self.deaths_total += deaths
 
 
 
