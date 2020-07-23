@@ -15,12 +15,11 @@ def test_assign_gender():
                                       {'Males': 0, 'Females': 0}, {'Males': 2, 'Females': 3},
                                       {'Males': 0, 'Females': 0}]
     # Tests to check assigned genders are equal to number of babies
+    # Tests to see that values are withing the range of possible outcomes
     assert 0 <= roger.list[0]['Males'] <= 12
     assert roger.list[0]['Males'] + roger.list[0]['Females'] == 12
     # Tests to ensure that outputs are not none
     roger.assign_genders()
     assert roger.list[0]['Males'] is not None
     assert roger.list[0]['Females'] is not None
-
-
 
