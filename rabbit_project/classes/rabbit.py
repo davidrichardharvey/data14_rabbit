@@ -57,8 +57,9 @@ class Rabbit:
 
     def pregnant_babies(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
-        fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males'] - self.pregnancies[1]
-        fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1]
+        # Rabbits - 2 Month old Rabbits - 1 Month old Rabbits - (Pregnant Females) - (Females who have given birth)
+        fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males']
+        fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1] - self.pregnancies[0]
         pregnancies = min(fertile_females, fertile_males)
         self.pregnancies.append(pregnancies)
         return pregnancies
