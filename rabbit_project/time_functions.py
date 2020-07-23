@@ -24,11 +24,6 @@ def time_passing(final_month):
         append_data_csv(month, rabbit_population_model.total_population,
                         rabbit_population_model.males, rabbit_population_model.females,
                         rabbit_population_model.deaths_total, model_count)
-        print(rabbit_population_model.pregnancies)
-        print(f"Population: {rabbit_population_model.total_population}")
-        print(f"Deaths: {rabbit_population_model.deaths_total}")
-        print(f"Males: {rabbit_population_model.males}")
-        print(f"Females: {rabbit_population_model.females}\n")
 
         t.sleep(1)
         month += 1
