@@ -88,7 +88,7 @@ class Rabbit:
                     for rabbit in self.list[generation][key]:
                         death_roll = randint(1,11)
                         if death_roll == 1:
-                            self.list[generation][key]
+                            self.list[generation][key] -= 1
 
 
 
