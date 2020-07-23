@@ -62,11 +62,6 @@ class Rabbit:
             self.males += generation['Males']
             self.females += generation['Females']
 
-    # def rabbits_dead(self):
-    #     generation_deaths = self.list.pop(0)
-    #     deaths = generation_deaths['Males'] + generation_deaths['Females']
-    #     self.deaths_total += deaths
-
     def pregnant_rabbits(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
         fertile_males = self.males - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males']
