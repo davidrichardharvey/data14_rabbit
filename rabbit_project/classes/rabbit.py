@@ -1,4 +1,5 @@
 from random import randint
+from numpy import random
 
 
 class Rabbit:
@@ -10,6 +11,9 @@ class Rabbit:
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
         self.deaths_total = 0
+        self.new_generation = []
+        self.vulnerable_females = 0
+        self.vulnerable_males = 0
 
     def calculate_total_pop(self):
         # This method goes through the list of rabbits and counts up all males and females
@@ -22,11 +26,12 @@ class Rabbit:
     def init_list(self):
         # This sets the initial list of 60 items with all ages of rabbits, assuming they die at 5 years old
         new_list = []
+        new_list.append({"Males": 0, "Females": 0})
+        new_list.append({"Males": 0, "Females": 0})
+        new_list.append({"Males": 1, "Females": 1})
         for each in range(0, 57):
             new_list.append({"Males": 0, "Females": 0})
-        new_list.append({"Males": 1, "Females": 1})
-        new_list.append({"Males": 0, "Females": 0})
-        new_list.append({"Males": 0, "Females": 0})
+
         return new_list
 
     def assign_genders(self):
@@ -39,7 +44,8 @@ class Rabbit:
                 males += 1
             elif gender == 'F':
                 females += 1
-        self.list.append({'Males': males, 'Females': females})
+        self.new_generation = {'Males': males, 'Females': females}
+        self.list = [self.new_generation] + self.list
 
     def birth_children(self):
         # This calculates the number of rabbits born based on the number of birthing females
@@ -64,12 +70,13 @@ class Rabbit:
     def pregnant_rabbits(self):
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
         # Rabbits - 2 Month old Rabbits - 1 Month old Rabbits - (Pregnant Females) - (Females who have given birth)
-        fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males']
-        fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1] - self.pregnancies[0]
-        pregnancies = min(fertile_females, fertile_males)        
-        self.pregnancies.append(pregnancies)
-        return pregnancies
-
+        fertile_males = self.males - self.list[0]['Males'] - self.list[1]['Males']
+        fertile_females = self.females - self.list[0]['Females'] - self.list[1]['Females'] - self.pregnancies[0]
+        potential_pregnancies = min(fertile_females, fertile_males)
+        n, p = potential_pregnancies, 0.5
+        num_pregnancies = random.binomial(n, p, 1)[0]
+        self.pregnancies.append(num_pregnancies)
+        return num_pregnancies
 
 
 
