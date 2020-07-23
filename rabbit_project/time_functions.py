@@ -8,7 +8,7 @@ rabbit_population_model = Rabbit()
 
 def time_passing(final_month):
     model_count = 1
-    while os.path.isfile(f"rabbit_modelling_data{model_count}"):
+    while os.path.isfile(f"rabbit_modelling_data{model_count}.csv"):
         model_count += 1
     create_rabbit_csv(model_count)
     month = 1
@@ -45,7 +45,7 @@ def rabbit_one_month():
 
 def append_data_csv(month, total_population, males, females, deaths, model_count):
     # Appends new month data to a csv file
-    with open(f"rabbit_modelling_data{model_count}".csv, "a", newline="") as rabbit_data:
+    with open(f"rabbit_modelling_data{model_count}.csv", "a", newline="") as rabbit_data:
         csv_append = csv.writer(rabbit_data)
         csv_append.writerow([month, total_population, males, females, deaths])
 
@@ -53,7 +53,7 @@ def append_data_csv(month, total_population, males, females, deaths, model_count
 def create_rabbit_csv(model_count):
     headers_list = ["Months", "Total Population",
                     "Males", "Females", "Deaths"]
-    with open(f"rabbit_modelling_data{model_count}".csv, "w", newline="") as csvfile:
+    with open(f"rabbit_modelling_data{model_count}.csv", "w", newline="") as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(headers_list)
 
