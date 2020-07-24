@@ -1,7 +1,6 @@
 import pytest
 from rabbit_project.classes.rabbit import Rabbit
 
-
 def test_assign_gender():
     roger = Rabbit()
     # Given inputs for testing
