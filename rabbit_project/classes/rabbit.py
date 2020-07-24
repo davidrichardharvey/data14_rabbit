@@ -72,7 +72,7 @@ class Rabbit:
         # Rabbits - 2 Month old Rabbits - 1 Month old Rabbits - (Pregnant Females) - (Females who have given birth)
         fertile_males = self.males - self.list[0]['Males'] - self.list[1]['Males']
         fertile_females = self.females - self.list[0]['Females'] - self.list[1]['Females'] - self.pregnancies[0]
-        potential_pregnancies = min(fertile_females, fertile_males)
+        potential_pregnancies = min(fertile_females, fertile_males * 10)
         n, p = potential_pregnancies, 0.5
         num_pregnancies = random.binomial(n, p, 1)[0]
         self.pregnancies.append(num_pregnancies)
