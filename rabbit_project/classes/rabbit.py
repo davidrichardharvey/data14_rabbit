@@ -1,5 +1,5 @@
 from random import randint
-from numpy import random
+import numpy as np
 import rabbit_project.config_file as config
 
 
@@ -41,7 +41,7 @@ class Rabbit:
         if self.new_babies > 1000:
             n, p = self.new_babies, 0.5
             males = np.random.binomial(n, p, 1)[0]
-            females = self.babies - males
+            females = self.new_babies - males
         else:
             for baby in range(0, self.new_babies):
                 gender = ['M', 'F'][randint(0, 1)]
@@ -54,11 +54,16 @@ class Rabbit:
     def birth_children(self):
         # This calculates the number of rabbits born based on the number of birthing females
         self.new_babies = 0
-        current_preg = self.pregnancies.pop(0)
-        sigma = (current_preg - 1) / (sqrt(12))
-        mu = 7.5 * current_preg
-        new_children = round(np.random.normal(mu, sigma, 1))
-        self.new_babies += new_children
+        if self.pregnancies[0] > 500:
+            current_preg = self.pregnancies.pop(0)
+            sigma = (current_preg - 1) / (12 ** 0.5)
+            mu = 7.5 * current_preg
+            new_children = round(np.random.normal(mu, sigma, 1)[0])
+            self.new_babies += new_children
+        else:
+            for each in range(0, self.pregnancies.pop(0)):
+                new_children = randint(1, 14)
+                self.new_babies += new_children
 
     def calc_gender_totals(self):
         # This calculates the total number of males and females in the rabbit list
@@ -78,9 +83,9 @@ class Rabbit:
         # Rabbits - 2 Month old Rabbits - 1 Month old Rabbits - (Pregnant Females) - (Females who have given birth)
         fertile_males = self.males - self.list[0]['Males'] - self.list[1]['Males']
         fertile_females = self.females - self.list[0]['Females'] - self.list[1]['Females'] - self.pregnancies[0]
-        potential_pregnancies = min(fertile_females, fertile_males * 10)
+        potential_pregnancies = min(fertile_females, fertile_males)
         n, p = potential_pregnancies, 0.5
-        num_pregnancies = random.binomial(n, p, 1)[0]
+        num_pregnancies = np.random.binomial(n, p, 1)[0]
         self.pregnancies.append(num_pregnancies)
         return num_pregnancies
 

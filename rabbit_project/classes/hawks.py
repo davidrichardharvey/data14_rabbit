@@ -2,6 +2,7 @@ from random import randint
 import rabbit_project.config_file as config
 from numpy import random
 
+
 class Hawk:
     def __init__(self):
         self.total_population = 0
@@ -13,6 +14,7 @@ class Hawk:
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
         self.deaths_total = 0
+
     def calculate_total_pop(self):
         # This method goes through the list of hawks and counts up all males and females
         total_pop = 0
@@ -20,6 +22,7 @@ class Hawk:
             total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
         self.total_population = total_pop
         return total_pop
+
     def init_list(self):
         # This sets the initial list of 60 items with all ages of hawks, assuming they die at 5 years old
         new_list = []
@@ -27,6 +30,7 @@ class Hawk:
             new_list.append({"Males": 0, "Females": 0})
         new_list[int(config.h_starting_age())] = {"Males": self.males, "Females": self.females}
         return new_list
+
     def assign_genders(self):
         # This assigns genders to hawks at birth and appends these values to the list of hawks
         males = 0
@@ -38,12 +42,14 @@ class Hawk:
             elif gender == 'F':
                 females += 1
         self.list.append({'Males': males, 'Females': females})
+
     def birth_children(self):
         # This calculates the number of hawks born based on the number of birthing females
         self.new_babies = 0
         for each in range(0, self.pregnancies.pop(0)):
             new_children = randint(self.min, self.max)
             self.new_babies += new_children
+
     def calc_gender_totals(self):
         # This calculates the total number of males and females in the hawks list
         self.males = 0
@@ -51,10 +57,12 @@ class Hawk:
         for generation in self.list:
             self.males += generation['Males']
             self.females += generation['Females']
+
     def hawks_dead(self):
         generation_deaths = self.list.pop(0)
         deaths = generation_deaths['Males'] + generation_deaths['Females']
         self.deaths_total += deaths
+
     def pregnant_hawks(self):
         # This calculates the number of hawks that can be pregnant and returns a number of hawks who become pregnant
         # Rabbits - 2 Month old Rabbits - 1 Month old Rabbits - (Pregnant Females) - (Females who have given birth)
