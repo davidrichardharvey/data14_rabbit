@@ -1,7 +1,7 @@
+class Hawks:
 from random import randint
 import rabbit_project.config_file as config
 
-class Rabbit:
     def __init__(self):
         self.total_population = 0
         self.males = int(config.r_starting_males())
@@ -51,7 +51,7 @@ class Rabbit:
     def calc_gender_totals(self):
         # This calculates the total number of males and females in the rabbit list
         self.males = 0
-        self.females = 0    
+        self.females = 0
         for generation in self.list:
             self.males += generation['Males']
             self.females += generation['Females']
@@ -65,7 +65,8 @@ class Rabbit:
         # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
         # Rabbits - 2 Month old Rabbits - 1 Month old Rabbits - (Pregnant Females) - (Females who have given birth)
         fertile_males = self.males - self.list[-2]['Males'] - self.list[-1]['Males']
-        fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1] - self.pregnancies[0]
+        fertile_females = self.females - self.list[-2]['Females'] - self.list[-1]['Females'] - self.pregnancies[1] - \
+                          self.pregnancies[0]
         pregnancies = min(fertile_females, fertile_males * 10)
         self.pregnancies.append(pregnancies)
         return self.pregnancies
