@@ -27,7 +27,7 @@ def time_passing(final_month):
                         rabbit_population_model.males, rabbit_population_model.females,
                         rabbit_population_model.deaths_total, model_count)
 
-        t.sleep(1)
+        #t.sleep(1)
         month += 1
         year = int(month/12)
         rem_month = month % 12

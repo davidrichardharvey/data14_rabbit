@@ -1,4 +1,4 @@
 from rabbit_project.time_functions import time_passing
 
-time_passing(60)
+time_passing(80)
 

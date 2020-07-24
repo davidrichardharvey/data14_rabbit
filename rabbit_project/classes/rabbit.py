@@ -26,7 +26,7 @@ class Rabbit:
         if len(self.list) < 49:
             for i in range(0, len(self.list)):
                 total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
-            self.total_population = total_pop
+            self.total_population = (total_pop)
         else:
             for i in range(0, len(self.list[:48])):
                 total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
@@ -56,7 +56,7 @@ class Rabbit:
                     males += 1
                 elif gender == 'F':
                     females += 1
-        self.list.append({'Males': males, 'Females': females})
+        self.list.append({'Males': (males), 'Females': (females)})
 
     def birth_children(self):
         # This calculates the number of rabbits born based on the number of birthing females
@@ -78,8 +78,8 @@ class Rabbit:
         self.females = 0
         if len(self.list) < 49:
             for generation in self.list:
-                self.males += generation['Males']
-                self.females += generation['Females']
+                self.males += (generation['Males'])
+                self.females += (generation['Females'])
         else:
             for generation in self.list:
                 self.males += generation['Males'] + self.vulnerable_males
@@ -111,7 +111,7 @@ class Rabbit:
                         self.deaths_total += 1
             else:
                 n, p = self.vulnerable_males, 0.1
-                deaths = random.binomial(n, p, 1)[0]
+                deaths = np.random.binomial(n, p, 1)[0]
                 self.vulnerable_males -= deaths
                 self.deaths_total += deaths
             deaths = 0
@@ -124,7 +124,7 @@ class Rabbit:
                         self.deaths_total += 1
             else:
                 n, p = self.vulnerable_females, 0.1
-                deaths = random.binomial(n, p, 1)[0]
+                deaths = np.random.binomial(n, p, 1)[0]
                 self.vulnerable_females -= deaths
                 self.deaths_total += deaths
         
