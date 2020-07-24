@@ -1,5 +1,5 @@
 from random import randint
-from numpy import random
+import numpy as np
 import rabbit_project.config_file as config
 
 
@@ -38,14 +38,18 @@ class Rabbit:
         # This assigns genders to rabbits at birth and appends these values to the list of rabbits
         males = 0
         females = 0
-        for baby in range(0, self.new_babies):
-            gender = ['M', 'F'][randint(0, 1)]
-            if gender == 'M':
-                males += 1
-            elif gender == 'F':
-                females += 1
-        self.new_generation = {'Males': males, 'Females': females}
-        self.list = [self.new_generation] + self.list
+        if self.new_babies > 1000:
+            n, p = self.new_babies, 0.5
+            males = np.random.binomial(n, p, 1)[0]
+            females = self.babies - males
+        else:
+            for baby in range(0, self.new_babies):
+                gender = ['M', 'F'][randint(0, 1)]
+                if gender == 'M':
+                    males += 1
+                elif gender == 'F':
+                    females += 1
+        self.list.append({'Males': males, 'Females': females})
 
     def birth_children(self):
         # This calculates the number of rabbits born based on the number of birthing females
