@@ -17,11 +17,11 @@ def r_starting_age():
 
 
 def r_starting_males():
-    return _config['DEFAULT']['number_of_starting_male_rabbits']
+    return _config['DEFAULT']['rabbits_num_starting_males']
 
 
 def r_starting_females():
-    return _config['DEFAULT']['number_of_starting_female_rabbits']
+    return _config['DEFAULT']['rabbits_num_starting_females']
 
 
 def r_pregnancy_chance():
