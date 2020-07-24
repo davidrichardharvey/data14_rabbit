@@ -81,27 +81,17 @@ class Rabbit:
             self.pregnancies.append(pregnancies)
             return self.pregnancies
 
-<<<<<<< HEAD
     def old_pregnant_rabbits(self):
-        if len(self.list) > 49:
+        if len(self.list) >= 49:
             # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
+            fertile_males = self.males[:48] - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males']
+            fertile_females = self.females[:48] - self.list[0]['Females'] - self.list[1]['Females'] - self.list[2]['Females'] - \
+                        self.pregnancies[1]
+            pregnancies = min(fertile_females, 10 * fertile_males)
+            self.pregnancies.append(pregnancies)
             old_pregnancies = min(self.vulnerable_females, 10 * self.vulnerable_males)
             self.pregnancies += old_pregnancies
             return self.pregnancies
-=======
-        def old_pregnant_rabbits(self):
-            if len(self.list) >= 49:
-                # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
-                fertile_males = self.males[:48] - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males'] -
-                fertile_females = self.females[:48] - self.list[0]['Females'] - self.list[1]['Females'] - self.list[2]['Females'] - \
-                            self.pregnancies[1]
-                pregnancies = min(fertile_females, 10 * fertile_males)
-                self.pregnancies.append(pregnancies)
-                old_pregnancies = min(vulnerable_females, 10 * vulnerable_males)
-                self.pregnancies += old_pregnancies
-                return self.pregnancies
->>>>>>> cdb57d57f8b193ab4b9eaa09afbbfa5da5385a1b
-
 
     def rabbit_deaths_new(self):
         if len(self.list) > 48:
@@ -115,22 +105,24 @@ class Rabbit:
                     if death_roll == 1:
                         deaths += 1
                         self.vulnerable_males -= 1
+                        self.deaths_total += 1
             else:
                 n, p = self.vulnerable_males, 0.1
                 deaths = np.random.binomial(n, p, 1)[0]
                 self.vulnerable_males -= deaths
                 self.deaths_total += deaths
             deaths = 0
-            if self.vulnerable_males < 500:
-                for each in range(0, self.vulnerable_males):
+            if self.vulnerable_females < 500:
+                for each in range(0, self.vulnerable_females):
                     death_roll = randint(1, 11)
                     if death_roll == 1:
                         deaths += 1
-                        self.vulnerable_males -= 1
+                        self.vulnerable_females -= 1
+                        self.deaths_total += 1
             else:
-                n, p = self.vulnerable_males, 0.1
+                n, p = self.vulnerable_females, 0.1
                 deaths = np.random.binomial(n, p, 1)[0]
-                self.vulnerable_males -= deaths
+                self.vulnerable_females -= deaths
                 self.deaths_total += deaths
         
 
