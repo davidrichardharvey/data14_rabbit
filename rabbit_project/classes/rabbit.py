@@ -38,21 +38,27 @@ class Rabbit:
         # This assigns genders to rabbits at birth and appends these values to the list of rabbits
         males = 0
         females = 0
-        for baby in range(0, self.new_babies):
-            gender = ['M', 'F'][randint(0, 1)]
-            if gender == 'M':
-                males += 1
-            elif gender == 'F':
-                females += 1
-        self.new_generation = {'Males': males, 'Females': females}
-        self.list = [self.new_generation] + self.list
+        if self.new_babies > 1000:
+            n, p = self.new_babies, 0.5
+            males = np.random.binomial(n, p, 1)[0]
+            females = self.babies - males
+        else:
+            for baby in range(0, self.new_babies):
+                gender = ['M', 'F'][randint(0, 1)]
+                if gender == 'M':
+                    males += 1
+                elif gender == 'F':
+                    females += 1
+        self.list.append({'Males': males, 'Females': females})
 
     def birth_children(self):
         # This calculates the number of rabbits born based on the number of birthing females
         self.new_babies = 0
-        for each in range(0, self.pregnancies.pop(0)):
-            new_children = randint(self.min, self.max)
-            self.new_babies += new_children
+        current_preg = self.pregnancies.pop(0)
+        sigma = (current_preg - 1) / (sqrt(12))
+        mu = 7.5 * current_preg
+        new_children = round(np.random.normal(mu, sigma, 1))
+        self.new_babies += new_children
 
     def calc_gender_totals(self):
         # This calculates the total number of males and females in the rabbit list
