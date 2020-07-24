@@ -11,6 +11,7 @@ class Rabbit:
         self.list = self.init_list()
         self.min = int(config.r_babies_min())
         self.max = int(config.r_babies_max())
+        self.pregnancy_chance = float(config.r_pregnancy_chance())
         self.pregnancies = [0, 1]  # First index is the birthing females, second index is pregnant females
         self.new_babies = 0
         self.deaths_total = 0
@@ -57,7 +58,7 @@ class Rabbit:
         if self.pregnancies[0] > 500:
             current_preg = self.pregnancies.pop(0)
             sigma = (current_preg - 1) / (12 ** 0.5)
-            mu = 7.5 * current_preg
+            mu = (self.min+self.max)/2 * current_preg
             new_children = round(np.random.normal(mu, sigma, 1)[0])
             self.new_babies += new_children
         else:
@@ -84,7 +85,7 @@ class Rabbit:
         fertile_males = self.males - self.list[0]['Males'] - self.list[1]['Males']
         fertile_females = self.females - self.list[0]['Females'] - self.list[1]['Females'] - self.pregnancies[0]
         potential_pregnancies = min(fertile_females, fertile_males)
-        n, p = potential_pregnancies, 0.5
+        n, p = potential_pregnancies, self.pregnancy_chance
         num_pregnancies = np.random.binomial(n, p, 1)[0]
         self.pregnancies.append(num_pregnancies)
         return num_pregnancies
