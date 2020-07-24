@@ -23,7 +23,7 @@ def time_passing(final_month):
         print(f"Deaths: {rabbit_population_model.deaths_total:,d}")
         print(f"Males: {rabbit_population_model.males:,d}")
         print(f"Females: {rabbit_population_model.females:,d}\n")
-        append_data_csv(year, rem_month, rabbit_population_model.total_population,
+        append_data_csv(month, year, rem_month, rabbit_population_model.total_population,
                         rabbit_population_model.males, rabbit_population_model.females,
                         rabbit_population_model.deaths_total, model_count)
 
@@ -42,15 +42,15 @@ def rabbit_one_month():
     rabbit_population_model.calculate_total_pop()
 
 
-def append_data_csv(year, rem_month, total_population, males, females, deaths, model_count):
+def append_data_csv(month, year, rem_month, total_population, males, females, deaths, model_count):
     # Appends new month data to a csv file
     with open(f"rabbit_modelling_data{model_count}.csv", "a", newline="") as rabbit_data:
         csv_append = csv.writer(rabbit_data)
-        csv_append.writerow([year, rem_month, total_population, males, females, deaths])
+        csv_append.writerow([month, year, rem_month, total_population, males, females, deaths])
 
 
 def create_rabbit_csv(model_count):
-    headers_list = ["Year", "Month", "Population",
+    headers_list = ["Total_Months", "Year", "Month", "Population",
                     "Males", "Females", "Deaths"]
     with open(f"rabbit_modelling_data{model_count}.csv", "w", newline="") as csvfile:
         csv_writer = csv.writer(csvfile)
@@ -59,14 +59,14 @@ def create_rabbit_csv(model_count):
 
 def draw_graph(model_count):
     data = np.genfromtxt(f"rabbit_modelling_data{model_count}.csv", delimiter=",",
-                         names=["Year", "Month", "Population", "Males", "Females", "Deaths"])
+                         names=["Total_Months", "Year", "Month", "Population", "Males", "Females", "Deaths"])
     ax = plt.plot
     plt.suptitle(f"Rabbit Population Model {model_count}")
-    ax(data["Year"], data["Population"], color='r', label='Total Population')
-    ax(data["Year"], data["Males"], color='b', label='Males')
-    ax(data["Year"], data["Females"], color='g', label='Females')
-    ax(data["Year"], data["Deaths"], color='k', label='Deaths')
-    plt.xlabel('Time (Years)')
+    ax(data["Total_Months"], data["Population"], color='r', label='Total Population')
+    ax(data["Total_Months"], data["Males"], color='b', label='Males')
+    ax(data["Total_Months"], data["Females"], color='g', label='Females')
+    ax(data["Total_Months"], data["Deaths"], color='k', label='Deaths')
+    plt.xlabel('Time (Months)')
     plt.ylabel('Number of Rabbits')
     leg = plt.legend(('Total Population', 'Males', 'Females', 'Deaths'), loc='best')
     leg.get_frame()
