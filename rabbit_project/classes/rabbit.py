@@ -19,7 +19,7 @@ class Rabbit:
     def calculate_total_pop(self):
         # This method goes through the list of rabbits and counts up all males and females
         total_pop = 0
-        if len(self.list) < 49
+        if len(self.list) < 49:
             for i in range(0, len(self.list)):
                 total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
             self.total_population = total_pop
@@ -79,7 +79,7 @@ class Rabbit:
     def old_pregnant_rabbits(self):
         if len(self.list) > 49:
             # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
-            old_pregnancies = min(vulnerable_females, 10 * vulnerable_males)
+            old_pregnancies = min(self.vulnerable_females, 10 * self.vulnerable_males)
             self.pregnancies += old_pregnancies
             return self.pregnancies
 
@@ -110,9 +110,9 @@ class Rabbit:
                         self.vulnerable_males -= 1
             else:
                 n, p = self.vulnerable_males, 0.1
-                    deaths = np.random.binomial(n, p, 1)[0]
-                    self.vulnerable_males -= deaths
-                    self.deaths_total += deaths
+                deaths = np.random.binomial(n, p, 1)[0]
+                self.vulnerable_males -= deaths
+                self.deaths_total += deaths
         
 
         

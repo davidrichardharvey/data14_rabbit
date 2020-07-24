@@ -11,7 +11,7 @@ def test_rabbits_dead_new():
 
     for i in range(0, 50):
         test.list.append({"Males": 3, "Females": 3})
-    test.rabbits_dead_new()
+    test.rabbit_deaths_new()
     assert 0 <= test.deaths_total <= 6
 
 
