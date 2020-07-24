@@ -54,9 +54,11 @@ class Rabbit:
     def birth_children(self):
         # This calculates the number of rabbits born based on the number of birthing females
         self.new_babies = 0
-        for each in range(0, self.pregnancies.pop(0)):
-            new_children = randint(1, 14)
-            self.new_babies += new_children
+        current_preg = self.pregnancies.pop(0)
+        sigma = (current_preg - 1)/(sqrt(12))
+        mu = 7.5 * current_preg
+        new_children = round(np.random.normal(mu, sigma, 1))
+        self.new_babies += new_children
 
     def calc_gender_totals(self):
         # This calculates the total number of males and females in the rabbit list
@@ -85,7 +87,7 @@ class Rabbit:
         def old_pregnant_rabbits(self):
             if len(self.list) >= 49:
                 # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
-                fertile_males = self.males[:48] - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males'] -
+                fertile_males = self.males[:48] - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males']
                 fertile_females = self.females[:48] - self.list[0]['Females'] - self.list[1]['Females'] - self.list[2]['Females'] - \
                             self.pregnancies[1]
                 pregnancies = min(fertile_females, 10 * fertile_males)
