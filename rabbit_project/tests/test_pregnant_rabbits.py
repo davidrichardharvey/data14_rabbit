@@ -1,8 +1,16 @@
 from rabbit_project.classes.rabbit import Rabbit
+from scipy import stats
 
 test = Rabbit()
 
 def test_pregnant_rabbits():
+<<<<<<< HEAD:rabbit_project/tests/test_pregnant_rabbits.py
+    assert test.males == 1
+    assert test.females == 1
+    assert test.pregnancies == [0, 1]
+    assert stats.binom_test(test.pregnancies, test.females, 0.5, 'two-sided')
+
+=======
     test.pregnant_rabbits()
     assert test.pregnancies == [0, 1, 0]
 
@@ -41,6 +49,7 @@ def test_pregnant_rabbits():
     test.pregnancies = [0, 0]
     test.pregnant_rabbits()
     assert test.pregnancies == [0, 0, 58]
+>>>>>>> dev:rabbit_project/tests/test_pregnant__rabbits.py
 
 
 

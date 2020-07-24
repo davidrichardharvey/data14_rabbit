@@ -17,7 +17,6 @@ def time_passing(final_month):
     while month <= final_month:
         print(f"We are in year {year} month {rem_month}")
         rabbit_one_month()
-
         print(f"Population: {rabbit_population_model.total_population:,d}")
         print(f"Deaths: {rabbit_population_model.deaths_total:,d}")
         print(f"Males: {rabbit_population_model.males:,d}")
@@ -37,7 +36,6 @@ def rabbit_one_month():
     rabbit_population_model.birth_children()
     rabbit_population_model.assign_genders()
     rabbit_population_model.calc_gender_totals()
-    rabbit_population_model.rabbits_dead()
     rabbit_population_model.calculate_total_pop()
 
 
