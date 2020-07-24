@@ -24,7 +24,7 @@ class Rabbit:
                 total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
             self.total_population = total_pop
         else:
-            for i in range(0, len(self.list)):
+            for i in range(0, len(self.list[:48])):
                 total_pop += (self.list[i]['Males'] + self.list[i]['Females'])
             self.total_population = total_pop + self.vulnerable_females + self.vulnerable_males
         return self.total_population
@@ -62,9 +62,14 @@ class Rabbit:
         # This calculates the total number of males and females in the rabbit list
         self.males = 0
         self.females = 0
-        for generation in self.list:
-            self.males += generation['Males']
-            self.females += generation['Females']
+        if len(self.list) < 49:
+            for generation in self.list:
+                self.males += generation['Males']
+                self.females += generation['Females']
+        else:
+            for generation in self.list:
+                self.males[:48] += generation['Males'] + self.vulnerable_males
+                self.females[:48] += generation['Females'] + self.vulnerable_females
 
     def pregnant_rabbits(self):
         if len(self.list) < 49:
@@ -76,12 +81,26 @@ class Rabbit:
             self.pregnancies.append(pregnancies)
             return self.pregnancies
 
+<<<<<<< HEAD
     def old_pregnant_rabbits(self):
         if len(self.list) > 49:
             # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
             old_pregnancies = min(self.vulnerable_females, 10 * self.vulnerable_males)
             self.pregnancies += old_pregnancies
             return self.pregnancies
+=======
+        def old_pregnant_rabbits(self):
+            if len(self.list) >= 49:
+                # This calculates the number of rabbits that can be pregnant and returns a number of rabbits who become pregnant
+                fertile_males = self.males[:48] - self.list[0]['Males'] - self.list[1]['Males'] - self.list[2]['Males'] -
+                fertile_females = self.females[:48] - self.list[0]['Females'] - self.list[1]['Females'] - self.list[2]['Females'] - \
+                            self.pregnancies[1]
+                pregnancies = min(fertile_females, 10 * fertile_males)
+                self.pregnancies.append(pregnancies)
+                old_pregnancies = min(vulnerable_females, 10 * vulnerable_males)
+                self.pregnancies += old_pregnancies
+                return self.pregnancies
+>>>>>>> cdb57d57f8b193ab4b9eaa09afbbfa5da5385a1b
 
 
     def rabbit_deaths_new(self):
