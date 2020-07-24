@@ -1,6 +1,11 @@
 from configparser import ConfigParser
 _config = ConfigParser()
-_config.read('./config.ini')  # Handles everything as a dictionary
+try:
+    _config.read('rabbit_project/config.ini')  # Handles everything as a dictionary
+    test = _config["DEFAULT"]["rabbit_dying_age"]
+except KeyError:
+    _config.read("./config.ini")
+
 
 # RABBITS
 def r_dying_age():

@@ -39,6 +39,7 @@ def rabbit_one_month():
     rabbit_population_model.birth_children()
     rabbit_population_model.assign_genders()
     rabbit_population_model.calc_gender_totals()
+    rabbit_population_model.rabbit_deaths_new()
     rabbit_population_model.calculate_total_pop()
 
 
